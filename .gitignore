@@ -1,0 +1,5 @@
+# Cliffpack .gitignore
+
+target/
+.vscode/
+.project

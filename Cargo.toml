@@ -1,0 +1,8 @@
+[package]
+name = "cliffpack"
+version = "0.1.0"
+authors = ["Robin Lindner <robin@deeprobin.de>"]
+edition = "2018"
+
+[dependencies]
+deno_core = "0.64.0"
