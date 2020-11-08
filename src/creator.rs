@@ -24,7 +24,7 @@ impl PluginCreator {
     }
 
     pub fn create_plugin<P: AsRef<Path>>(&mut self, output: P) -> Result<(), PluginWriteError> {
-        let file = File::open(output)?;
+        let file = File::with_options().read(true).write(true).create_new(true).open(output)?;
 
         // BufWriter is used to reduce system-write-calls and this improves performance
         let write = BufWriter::new(file);
@@ -32,7 +32,9 @@ impl PluginCreator {
         let mut writer = writer::PluginWriter { write };
 
         writer.write_magic_number()?;
+        writer.flush()?;
         writer.write_file_version()?;
+        writer.flush()?;
         writer.write_meta(self.meta.clone())?;
         writer.flush()?;
 

@@ -1,3 +1,5 @@
+#![feature(with_options)]
+
 pub use creator::*;
 pub use loader::*;
 
